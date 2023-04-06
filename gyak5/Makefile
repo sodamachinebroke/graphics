@@ -1,2 +1,2 @@
 all:
-	gcc gyak5.c -o gyak5 -lSDL2main -lSDL2
+	gcc -Iinclude src/loop.c src/chatGPTStolen.c src/main.c -o gay -lSDL2main -lSDL2
