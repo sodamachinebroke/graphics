@@ -4,11 +4,10 @@ I will try to recreate this garage scene:
 The car will be a low poly model of an old Toyota AE86 with parts laying about. Light will come from the ceiling, as if there were any actual lights.
 You will be able to start the car and the engine will rumble around, along with some smoke particles. 
 
-//Possible, but not sure.
+##### Possible, but not sure.
 - Smoke will be parallelized for performance.
 - Parts of the car will be removable, like the wheels, engine and hood.
 - Some sort of ray-tracing might be implemented, not sure how powerful OpenGL is, regarding this.
-//
 
 I will update this as time progresses.
 
