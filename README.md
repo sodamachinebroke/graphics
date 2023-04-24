@@ -1,6 +1,6 @@
 # graphics
 I will try to recreate this garage scene: 
-![Garage](https://github.com/sodamachinebroke/graphics/blob/main/misc/msc_garage.jpg?raw=true)
+![Garage](https://github.com/sodamachinebroke/graphics/blob/main/misc/msc_garage.jpg)
 The car will be a low poly model of an old Toyota AE86 with parts laying about. Light will come from the ceiling, as if there were any actual lights.
 You will be able to start the car and the engine will rumble around, along with some smoke particles. 
 
