@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "time.h": "c"
+        "time.h": "c",
+        "camera.h": "c",
+        "model.h": "c"
     }
 }
