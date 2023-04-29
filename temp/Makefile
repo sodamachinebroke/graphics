@@ -1,2 +1,2 @@
 all:
-	gcc main.c -lglfw -lGLEW -lGL -lm -o main -lc
+	gcc -Iinclude/ src/main.c src/shaderloader.c -lglfw -lGLEW -lGL -lm -o main
