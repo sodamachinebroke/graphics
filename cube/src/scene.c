@@ -5,10 +5,8 @@
 
 void init_scene(Scene *scene)
 {
-    load_model(&(scene->cube), "assets/models/Skippertriangle.obj");
+    load_model(&(scene->cube), "assets/models/Skipper.obj");
     scene->texture_id = load_texture("assets/textures/cube.png");
-
-    glBindTexture(GL_TEXTURE_2D, scene->texture_id);
 
     scene->material.ambient.red = 0.0;
     scene->material.ambient.green = 0.0;
@@ -27,10 +25,10 @@ void init_scene(Scene *scene)
 
 void set_lighting()
 {
-    float ambient_light[] = {0.0f, 0.0f, 1.0f, 1.0f};
+    float ambient_light[] = {1.0f, 1.0f, 1.0f, 1.0f};
     float diffuse_light[] = {1.0f, 1.0f, 1.0, 1.0f};
-    float specular_light[] = {0.0f, 0.0f, 0.0f, 1.0f};
-    float position[] = {0.0f, 0.0f, 10.0f, 1.0f};
+    float specular_light[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    float position[] = {0.0f, -50.0f, 10.0f, 1.0f};
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_light);
@@ -71,24 +69,34 @@ void render_scene(const Scene *scene)
     set_material(&(scene->material));
     set_lighting();
     draw_origin();
-    glRotatef(90, 1, 0, 0);
-    glScalef(100, 100, 100);
-    draw_model(&(scene->cube));
+
+    // Cube
+    {
+        glPushMatrix();
+        glRotatef(90, 1, 0, 0);
+        glScalef(25, 25, 25);
+        glTranslatef(0.0f, 1.0f, 0.0f);
+        glBindTexture(GL_TEXTURE_2D, scene->texture_id);
+        draw_model(&(scene->cube));
+        glPopMatrix();
+    }
+
+    // Truck
 }
 
 void draw_origin()
 {
     glBegin(GL_LINES);
 
-    glColor3f(1, 0, 0);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex3f(0, 0, 0);
     glVertex3f(1, 0, 0);
 
-    glColor3f(0, 1, 0);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex3f(0, 0, 0);
     glVertex3f(0, 1, 0);
 
-    glColor3f(0, 0, 1);
+    glColor3f(1.0f, 1.0f, 1.0f);
     glVertex3f(0, 0, 0);
     glVertex3f(0, 0, 1);
 
