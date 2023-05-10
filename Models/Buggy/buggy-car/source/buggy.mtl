@@ -1,0 +1,239 @@
+# Blender 3.5.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Material.001
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/barrel/Container_Other_uiujbcxva_2K_3d_ms/uiujbcxva_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/barrel/Container_Other_uiujbcxva_2K_3d_ms/uiujbcxva_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/barrel/Container_Other_uiujbcxva_2K_3d_ms/uiujbcxva_2K_Normal_LOD0.jpg
+
+newmtl Material.002
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/barrel/Other_Various_ui1maewga_2K_3d_ms/ui1maewga_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/barrel/Other_Various_ui1maewga_2K_3d_ms/ui1maewga_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/barrel/Other_Various_ui1maewga_2K_3d_ms/ui1maewga_2K_Normal_LOD0.jpg
+
+newmtl Material.003
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/barrel/Metal_Rusty_teufceuda_2K_3d_ms/teufceuda_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/barrel/Metal_Rusty_teufceuda_2K_3d_ms/teufceuda_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/barrel/Metal_Rusty_teufceuda_2K_3d_ms/teufceuda_2K_Normal_LOD0.jpg
+
+newmtl Material.004
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/barrel/Other_Various_uizhacnga_2K_3d_ms/uizhacnga_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/barrel/Other_Various_uizhacnga_2K_3d_ms/uizhacnga_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/barrel/Other_Various_uizhacnga_2K_3d_ms/uizhacnga_2K_Normal_LOD0.jpg
+
+newmtl Material.005
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/oil bottle/Plastic_tlzkdilva_2K_3d_ms/tlzkdilva_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/oil bottle/Plastic_tlzkdilva_2K_3d_ms/tlzkdilva_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/oil bottle/Plastic_tlzkdilva_2K_3d_ms/tlzkdilva_2K_Normal_LOD0.jpg
+
+newmtl Material.006
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/x/gas/Metal_Rusty_tl1rbitfa_2K_3d_ms/tl1rbitfa_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/gas/Metal_Rusty_tl1rbitfa_2K_3d_ms/tl1rbitfa_2K_Normal_LOD0.jpg
+
+newmtl Material.007
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/wodd box/Wood_Misc_ucooedgfa_2K_3d_ms/ucooedgfa_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/wodd box/Wood_Misc_ucooedgfa_2K_3d_ms/ucooedgfa_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/wodd box/Wood_Misc_ucooedgfa_2K_3d_ms/ucooedgfa_2K_Normal_LOD0.jpg
+
+newmtl Material.008
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/x/wodd box/Wood_Container_uehqdivfa_2K_3d_ms/uehqdivfa_2K_Albedo.jpg
+map_Ns G:/car old/pic/FBX/x/wodd box/Wood_Container_uehqdivfa_2K_3d_ms/uehqdivfa_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/x/wodd box/Wood_Container_uehqdivfa_2K_3d_ms/uehqdivfa_2K_Normal_LOD0.jpg
+
+newmtl Material.009
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns texture/body/Material.001_Roughness.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/BODY/fbx/ssp/Material.001_Normal_OpenGL.png
+
+newmtl Material.010
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/BODYF1/Other_uh1gddpfa_2K_3d_ms/uh1gddpfa_2K_Roughness.jpg
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/BODYF1/Other_uh1gddpfa_2K_3d_ms/uh1gddpfa_2K_Normal_LOD0.jpg
+
+newmtl Material.011
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/CAR1/ss/Material.009_Base_Color.png
+map_Ns G:/car old/pic/FBX/CAR1/ss/Material.009_Roughness.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/ss/Material.009_Normal_OpenGL.png
+
+newmtl Material.012
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/car t/fbx/fbx/zz/zz/Material.001_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/car t/fbx/fbx/zz/zz/Material.001_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/car t/fbx/fbx/zz/zz/Material.001_Normal_OpenGL.png
+
+newmtl Material.013
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns texture/BodyF1/Material.002_Roughness.png
+map_refl texture/BodyF1/Material.002_Metallic.png
+map_Bump -bm 1.000000 texture/BodyF1/Material.002_Normal_OpenGL.png
+
+newmtl Material.014
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/car staing/fbx/X/ss/Material_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/car staing/fbx/X/ss/Material_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/car staing/fbx/X/ss/Material_Normal_OpenGL.png
+
+newmtl Material.015
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/CAR1/pas2/p/fbx/SZSA/Material.014_Base_Color.png
+map_Ns G:/car old/pic/FBX/CAR1/pas2/p/fbx/SZSA/Material.014_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/p/fbx/SZSA/Material.014_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/p/fbx/SZSA/Material.014_Normal.png
+
+newmtl Material.016
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd G:/car old/pic/FBX/CAR1/pas2/ss/Material.009_Base_Color.png
+map_Ns G:/car old/pic/FBX/CAR1/pas2/ss/Material.009_Roughness.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/ss/Material.009_Normal_OpenGL.png
+
+newmtl Material.017
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/bag/fbx/sss/Material.001_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/bag/fbx/sss/Material.001_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/bag/fbx/sss/Material.001_Normal_OpenGL.png
+
+newmtl Material.019
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/car p/fbx/ss/Material.001_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/car p/fbx/ss/Material.001_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/car p/fbx/ss/Material.001_Normal_OpenGL.png
+
+newmtl Material.020
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl Material.021
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/caka/gbx/ZZ/Material.017_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/caka/gbx/ZZ/Material.017_Metallic.png
+
+newmtl Material.022
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Ns G:/car old/pic/FBX/CAR1/pas2/car engine/assp/Material.003_Roughness.png
+map_refl G:/car old/pic/FBX/CAR1/pas2/car engine/assp/Material.003_Metallic.png
+map_Bump -bm 1.000000 G:/car old/pic/FBX/CAR1/pas2/car engine/assp/Material.003_Normal_OpenGL.png
