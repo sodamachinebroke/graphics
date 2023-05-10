@@ -17,7 +17,7 @@ typedef struct Object
 
 typedef struct Scene
 {
-    Object objects[2];
+    Object objects[3];
 } Scene;
 
 /**

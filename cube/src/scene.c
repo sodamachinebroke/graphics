@@ -7,20 +7,27 @@ void init_scene(Scene *scene)
 {
 
     // Load in the cube model
-    load_model(&(scene->objects[0].model), "assets/models/cube.obj");
-    scene->objects[0].texture_id = load_texture("assets/textures/grille.jpg");
-    scene->objects[0].material.ambient = (Color){1.0, 1.0, 1.0};
+    load_model(&(scene->objects[0].model), "assets/models/garageobj.obj");
+    scene->objects[0].texture_id = load_texture("assets/textures/gay.jpg");
+    scene->objects[0].material.ambient = (Color){0.1, 0.1, 0.1};
     scene->objects[0].material.diffuse = (Color){1.0, 1.0, 1.0};
-    scene->objects[0].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[0].material.specular = (Color){0.2, 0.2, 0.2};
     scene->objects[0].material.shininess = 0.0;
 
     // Load in the minitruck model
-    load_model(&(scene->objects[1].model), "assets/models/minitruck.obj");
-    scene->objects[0].texture_id = load_texture("assets/textures/cube.png");
-    scene->objects[0].material.ambient = (Color){0.2, 0.2, 0.2};
-    scene->objects[0].material.diffuse = (Color){0.8, 0.8, 0.8};
-    scene->objects[0].material.specular = (Color){0.0, 0.0, 0.0};
-    scene->objects[0].material.shininess = 0.0;
+    load_model(&(scene->objects[1].model), "assets/models/buggy.obj");
+    scene->objects[1].texture_id = load_texture("assets/textures/grille.jpg");
+    scene->objects[1].material.ambient = (Color){0.2, 0.2, 0.2};
+    scene->objects[1].material.diffuse = (Color){0.8, 0.8, 0.8};
+    scene->objects[1].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[1].material.shininess = 0.0;
+
+    load_model(&(scene->objects[2].model), "assets/models/V12.obj");
+    scene->objects[2].texture_id = load_texture("assets/textures/white.png");
+    scene->objects[2].material.ambient = (Color){0.2, 0.2, 0.2};
+    scene->objects[2].material.diffuse = (Color){0.8, 0.8, 0.8};
+    scene->objects[2].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[2].material.shininess = 0.0;
 }
 
 void set_lighting()
@@ -70,23 +77,37 @@ void render_scene(const Scene *scene)
     set_lighting();
     draw_origin();
 
-    // Cube
+    // Garage
     {
         glPushMatrix();
+        glRotatef(90, 1, 0, 0);
         glTranslatef(0.0f, 0.0f, 0.0f);
-        glScalef(1, 1, 1);
+        glScalef(0.5f, 0.5f, 0.5f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[0].texture_id);
         draw_model(&(scene->objects[0].model));
         glPopMatrix();
     }
 
-    // Truck
+    // Buggy
     {
         glPushMatrix();
-        glRotatef(90,1,0,0);
-        glScalef(0.2f,0.2f,0.2f);
+        glRotatef(90, 1, 0, 0);
+        glTranslatef(1.0f, 0.4f, 4.0f);
+        glScalef(0.7f, 0.7f, 0.7f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[1].texture_id);
         draw_model(&(scene->objects[1].model));
+        glPopMatrix();
+    }
+
+    // V12
+
+    {
+        glPushMatrix();
+        glRotatef(90, 1, 0, 0);
+        // glTranslatef(1.0f, 0.4f, 4.0f);
+        glScalef(0.01f, 0.01f, 0.01f);
+        glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
+        draw_model(&(scene->objects[2].model));
         glPopMatrix();
     }
 }
