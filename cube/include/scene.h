@@ -6,11 +6,18 @@
 
 #include <obj/model.h>
 
-typedef struct Scene
+typedef struct Object
 {
-    Model cube;
+    Model model;
     Material material;
     GLuint texture_id;
+    vec3 position;
+    vec3 scale;
+}Object;
+
+typedef struct Scene
+{
+    Object objects[2];
 } Scene;
 
 /**

@@ -5,22 +5,22 @@
 
 void init_scene(Scene *scene)
 {
-    load_model(&(scene->cube), "assets/models/Skipper.obj");
-    scene->texture_id = load_texture("assets/textures/cube.png");
 
-    scene->material.ambient.red = 0.0;
-    scene->material.ambient.green = 0.0;
-    scene->material.ambient.blue = 0.0;
+    // Load in the cube model
+    load_model(&(scene->objects[0].model), "assets/models/cube.obj");
+    scene->objects[0].texture_id = load_texture("assets/textures/grille.jpg");
+    scene->objects[0].material.ambient = (Color){1.0, 1.0, 1.0};
+    scene->objects[0].material.diffuse = (Color){1.0, 1.0, 1.0};
+    scene->objects[0].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[0].material.shininess = 0.0;
 
-    scene->material.diffuse.red = 1.0;
-    scene->material.diffuse.green = 0.0;
-    scene->material.diffuse.blue = 1.0;
-
-    scene->material.specular.red = 0.0;
-    scene->material.specular.green = 0.0;
-    scene->material.specular.blue = 0.0;
-
-    scene->material.shininess = 0.0;
+    // Load in the minitruck model
+    load_model(&(scene->objects[1].model), "assets/models/minitruck.obj");
+    scene->objects[0].texture_id = load_texture("assets/textures/cube.png");
+    scene->objects[0].material.ambient = (Color){0.2, 0.2, 0.2};
+    scene->objects[0].material.diffuse = (Color){0.8, 0.8, 0.8};
+    scene->objects[0].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[0].material.shininess = 0.0;
 }
 
 void set_lighting()
@@ -66,22 +66,29 @@ void update_scene(Scene *scene)
 
 void render_scene(const Scene *scene)
 {
-    set_material(&(scene->material));
+    set_material(&(scene->objects[0].material));
     set_lighting();
     draw_origin();
 
     // Cube
     {
         glPushMatrix();
-        glRotatef(90, 1, 0, 0);
-        glScalef(25, 25, 25);
-        glTranslatef(0.0f, 1.0f, 0.0f);
-        glBindTexture(GL_TEXTURE_2D, scene->texture_id);
-        draw_model(&(scene->cube));
+        glTranslatef(0.0f, 0.0f, 0.0f);
+        glScalef(1, 1, 1);
+        glBindTexture(GL_TEXTURE_2D, scene->objects[0].texture_id);
+        draw_model(&(scene->objects[0].model));
         glPopMatrix();
     }
 
     // Truck
+    {
+        glPushMatrix();
+        glRotatef(90,1,0,0);
+        glScalef(0.2f,0.2f,0.2f);
+        glBindTexture(GL_TEXTURE_2D, scene->objects[1].texture_id);
+        draw_model(&(scene->objects[1].model));
+        glPopMatrix();
+    }
 }
 
 void draw_origin()
