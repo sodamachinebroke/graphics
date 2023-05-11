@@ -16,7 +16,7 @@ void init_scene(Scene *scene)
 
     // Load in the minitruck model
     load_model(&(scene->objects[1].model), "assets/models/buggy.obj");
-    scene->objects[1].texture_id = load_texture("assets/textures/grille.jpg");
+    scene->objects[1].texture_id = load_texture("assets/textures/white.png");
     scene->objects[1].material.ambient = (Color){0.2, 0.2, 0.2};
     scene->objects[1].material.diffuse = (Color){0.8, 0.8, 0.8};
     scene->objects[1].material.specular = (Color){0.0, 0.0, 0.0};
