@@ -17,30 +17,87 @@ void init_scene(Scene *scene)
     // Load in the minitruck model
     load_model(&(scene->objects[1].model), "assets/models/buggy.obj");
     scene->objects[1].texture_id = load_texture("assets/textures/white.png");
-    scene->objects[1].material.ambient = (Color){0.2, 0.2, 0.2};
+    scene->objects[1].material.ambient = (Color){0.1, 0.1, 0.1};
     scene->objects[1].material.diffuse = (Color){0.8, 0.8, 0.8};
     scene->objects[1].material.specular = (Color){0.0, 0.0, 0.0};
-    scene->objects[1].material.shininess = 0.0;
+    scene->objects[1].material.shininess = 0.2;
 
+    // Load in the V12 engine's model
     load_model(&(scene->objects[2].model), "assets/models/v12stripped.obj");
     scene->objects[2].texture_id = load_texture("assets/textures/white.png");
     scene->objects[2].material.ambient = (Color){0.2, 0.2, 0.2};
     scene->objects[2].material.diffuse = (Color){0.8, 0.8, 0.8};
     scene->objects[2].material.specular = (Color){0.0, 0.0, 0.0};
     scene->objects[2].material.shininess = 0.0;
+
+    // Load in the cube model for science
+    load_model(&(scene->objects[3].model), "assets/models/cube.obj");
+    scene->objects[3].texture_id = load_texture("assets/textures/white.png");
+    scene->objects[3].material.ambient = (Color){1.0, 1.0, 1.0};
+    scene->objects[3].material.diffuse = (Color){1.0, 1.0, 1.0};
+    scene->objects[3].material.specular = (Color){1.0, 1.0, 1.0};
+    scene->objects[3].material.shininess = 1.0;
 }
 
-void set_lighting()
+void set_lighting(Light *light)
 {
-    float ambient_light[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    float diffuse_light[] = {1.0f, 1.0f, 1.0, 1.0f};
-    float specular_light[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    float position[] = {0.0f, -50.0f, 10.0f, 1.0f};
+    light->lsources[0].ambient[0] = 1.0f;
+    light->lsources[0].ambient[1] = 1.0f;
+    light->lsources[0].ambient[2] = 1.0f;
+    light->lsources[0].ambient[3] = 1.0f;
 
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient_light);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse_light);
-    glLightfv(GL_LIGHT0, GL_SPECULAR, specular_light);
-    glLightfv(GL_LIGHT0, GL_POSITION, position);
+    light->lsources[0].diffuse[0] = 1.0f;
+    light->lsources[0].diffuse[1] = 1.0f;
+    light->lsources[0].diffuse[2] = 1.0f;
+    light->lsources[0].diffuse[3] = 1.0f;
+
+    light->lsources[0].specular[0] = 1.0f;
+    light->lsources[0].specular[1] = 1.0f;
+    light->lsources[0].specular[2] = 1.0f;
+    light->lsources[0].specular[3] = 1.0f;
+
+    light->lsources[0].position[0] = 3.0f;
+    light->lsources[0].position[1] = -4.0f;
+    light->lsources[0].position[2] = 2.0f;
+    light->lsources[0].position[3] = 1.0f;
+
+    light->lsources[0].angle = 45.0f;
+    light->lsources[0].exponent = 128.0f;
+
+    light->lsources[1].ambient[0] = 1.0f;
+    light->lsources[1].ambient[1] = 1.0f;
+    light->lsources[1].ambient[2] = 1.0f;
+    light->lsources[1].ambient[3] = 1.0f;
+
+    light->lsources[1].diffuse[0] = 1.0f;
+    light->lsources[1].diffuse[1] = 1.0f;
+    light->lsources[1].diffuse[2] = 1.0f;
+    light->lsources[1].diffuse[3] = 1.0f;
+
+    light->lsources[1].specular[0] = 1.0f;
+    light->lsources[1].specular[1] = 1.0f;
+    light->lsources[1].specular[2] = 1.0f;
+    light->lsources[1].specular[3] = 1.0f;
+
+    light->lsources[1].position[0] = -3.2f;
+    light->lsources[1].position[1] = -4.0f;
+    light->lsources[1].position[2] = 2.0f;
+    light->lsources[1].position[3] = 1.0f;
+    
+    light->lsources[1].angle = 45.0f;
+    light->lsources[1].exponent = 128.0f;
+
+    glLightfv(GL_LIGHT0, GL_AMBIENT, light->lsources[0].ambient);
+    glLightfv(GL_LIGHT0, GL_DIFFUSE, light->lsources[0].diffuse);
+    glLightfv(GL_LIGHT0, GL_SPECULAR, light->lsources[0].specular);
+    glLightfv(GL_LIGHT0, GL_POSITION, light->lsources[0].position);
+    glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, light->lsources[0].angle);
+    glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, light->lsources[0].exponent);
+
+    glLightfv(GL_LIGHT1, GL_AMBIENT, light->lsources[1].ambient);
+    glLightfv(GL_LIGHT1, GL_DIFFUSE, light->lsources[1].diffuse);
+    glLightfv(GL_LIGHT1, GL_SPECULAR, light->lsources[1].specular);
+    glLightfv(GL_LIGHT1, GL_POSITION, light->lsources[1].position);
 }
 
 void set_material(const Material *material)
@@ -71,11 +128,22 @@ void update_scene(Scene *scene)
 {
 }
 
-void render_scene(const Scene *scene)
+void render_scene(const Scene *scene, const Light *light)
 {
     set_material(&(scene->objects[0].material));
-    set_lighting();
+    set_lighting(light);
     draw_origin();
+    /*// Spotlight0 origin
+    {
+        glPushMatrix();
+        glTranslatef(light->lsources[0].position[0],
+                     light->lsources[0].position[1],
+                     light->lsources[0].position[2]);
+        glScalef(0.2f, 0.2f, 0.2f);
+        glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
+        draw_model(&(scene->objects[3].model));
+        glPopMatrix();
+    }*/
 
     // Garage
     {
@@ -87,7 +155,7 @@ void render_scene(const Scene *scene)
         draw_model(&(scene->objects[0].model));
         glPopMatrix();
     }
-
+    /*
     // Buggy
     {
         glPushMatrix();
@@ -109,7 +177,7 @@ void render_scene(const Scene *scene)
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
         glPopMatrix();
-    }
+    }*/
 }
 
 void draw_origin()
