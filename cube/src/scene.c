@@ -7,7 +7,7 @@ void init_scene(Scene *scene)
 {
 
     // Load in the cube model
-    load_model(&(scene->objects[0].model), "assets/models/garageobj.obj");
+    load_model(&(scene->objects[0].model), "assets/models/garagetriangle.obj");
     scene->objects[0].texture_id = load_texture("assets/textures/gay.jpg");
     scene->objects[0].material.ambient = (Color){0.1, 0.1, 0.1};
     scene->objects[0].material.diffuse = (Color){1.0, 1.0, 1.0};
@@ -22,7 +22,7 @@ void init_scene(Scene *scene)
     scene->objects[1].material.specular = (Color){0.0, 0.0, 0.0};
     scene->objects[1].material.shininess = 0.0;
 
-    load_model(&(scene->objects[2].model), "assets/models/V12.obj");
+    load_model(&(scene->objects[2].model), "assets/models/v12stripped.obj");
     scene->objects[2].texture_id = load_texture("assets/textures/white.png");
     scene->objects[2].material.ambient = (Color){0.2, 0.2, 0.2};
     scene->objects[2].material.diffuse = (Color){0.8, 0.8, 0.8};
@@ -104,7 +104,7 @@ void render_scene(const Scene *scene)
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
-        // glTranslatef(1.0f, 0.4f, 4.0f);
+        glTranslatef(0.0f, 0.4f, 0.0f);
         glScalef(0.01f, 0.01f, 0.01f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
