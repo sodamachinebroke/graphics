@@ -5,7 +5,7 @@
 /**
  * Main function
  */
-int main(int argc, char* argv[])
+int main()
 {
     App app;
 

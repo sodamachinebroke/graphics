@@ -17,8 +17,24 @@ typedef struct Object
 
 typedef struct Scene
 {
-    Object objects[3];
+    Object objects[4];
 } Scene;
+
+typedef struct LSource
+{
+    float ambient[4];
+    float diffuse[4];
+    float specular[4];
+    float position[4];
+    float angle;
+    float exponent;
+} LSource;
+
+typedef struct Light
+{
+    LSource lsources[2];
+} Light;
+
 
 /**
  * Initialize the scene by loading models.
@@ -43,7 +59,7 @@ void update_scene(Scene* scene);
 /**
  * Render the scene objects.
  */
-void render_scene(const Scene* scene);
+void render_scene(const Scene* scene, const Light* light);
 
 /**
  * Draw the origin of the world coordinate system.
