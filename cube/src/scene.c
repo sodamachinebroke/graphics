@@ -10,11 +10,11 @@ void init_scene(Scene *scene)
     load_model(&(scene->objects[0].model), "assets/models/garagetriangle.obj");
     scene->objects[0].texture_id = load_texture("assets/textures/gay.jpg");
     scene->objects[0].material.ambient = (Color){0.1, 0.1, 0.1};
-    scene->objects[0].material.diffuse = (Color){1.0, 1.0, 1.0};
+    scene->objects[0].material.diffuse = (Color){0.6, 0.6, 0.6};
     scene->objects[0].material.specular = (Color){0.2, 0.2, 0.2};
     scene->objects[0].material.shininess = 0.0;
 
-    // Load in the minitruck model
+    // Load in the buggy model
     load_model(&(scene->objects[1].model), "assets/models/buggy.obj");
     scene->objects[1].texture_id = load_texture("assets/textures/white.png");
     scene->objects[1].material.ambient = (Color){0.1, 0.1, 0.1};
@@ -61,8 +61,13 @@ void set_lighting(Light *light)
     light->lsources[0].position[2] = 2.0f;
     light->lsources[0].position[3] = 1.0f;
 
-    light->lsources[0].angle = 45.0f;
-    light->lsources[0].exponent = 128.0f;
+    light ->lsources[0].direction[0] = 0.0f;
+    light ->lsources[0].direction[1] = 0.0f;
+    light ->lsources[0].direction[2] = -10.0f;
+    light ->lsources[0].direction[3] = 0.0f;
+
+    light->lsources[0].angle = 80.0f;
+    light->lsources[0].exponent = 1.0f;
 
     light->lsources[1].ambient[0] = 1.0f;
     light->lsources[1].ambient[1] = 1.0f;
@@ -83,14 +88,20 @@ void set_lighting(Light *light)
     light->lsources[1].position[1] = -4.0f;
     light->lsources[1].position[2] = 2.0f;
     light->lsources[1].position[3] = 1.0f;
+
+    light ->lsources[1].direction[0] = 0.0f;
+    light ->lsources[1].direction[1] = 0.0f;
+    light ->lsources[1].direction[2] = -10.0f;
+    light ->lsources[1].direction[3] = 0.0f;
     
-    light->lsources[1].angle = 45.0f;
-    light->lsources[1].exponent = 128.0f;
+    light->lsources[1].angle = 80.0f;
+    light->lsources[1].exponent = 1.0f;
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, light->lsources[0].ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light->lsources[0].diffuse);
     glLightfv(GL_LIGHT0, GL_SPECULAR, light->lsources[0].specular);
     glLightfv(GL_LIGHT0, GL_POSITION, light->lsources[0].position);
+    glLightfv(GL_LIGHT0, GL_SPOT_DIRECTION, light->lsources[0].direction);
     glLightf(GL_LIGHT0, GL_SPOT_CUTOFF, light->lsources[0].angle);
     glLightf(GL_LIGHT0, GL_SPOT_EXPONENT, light->lsources[0].exponent);
 
@@ -98,6 +109,9 @@ void set_lighting(Light *light)
     glLightfv(GL_LIGHT1, GL_DIFFUSE, light->lsources[1].diffuse);
     glLightfv(GL_LIGHT1, GL_SPECULAR, light->lsources[1].specular);
     glLightfv(GL_LIGHT1, GL_POSITION, light->lsources[1].position);
+    glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, light->lsources[1].direction);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, light->lsources[1].angle);
+    glLightf(GL_LIGHT1, GL_SPOT_EXPONENT, light->lsources[1].exponent);
 }
 
 void set_material(const Material *material)
@@ -131,7 +145,9 @@ void update_scene(Scene *scene)
 void render_scene(const Scene *scene, const Light *light)
 {
     set_material(&(scene->objects[0].material));
-    set_lighting(light);
+    glEnable(GL_LIGHT0);
+    glEnable(GL_LIGHT1);
+    set_lighting((Light *)light);
     draw_origin();
     /*// Spotlight0 origin
     {
@@ -155,12 +171,12 @@ void render_scene(const Scene *scene, const Light *light)
         draw_model(&(scene->objects[0].model));
         glPopMatrix();
     }
-    /*
+    
     // Buggy
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
-        glTranslatef(1.0f, 0.4f, 4.0f);
+        glTranslatef(1.0f, 0.25f, 4.0f);
         glScalef(0.7f, 0.7f, 0.7f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[1].texture_id);
         draw_model(&(scene->objects[1].model));
@@ -172,12 +188,12 @@ void render_scene(const Scene *scene, const Light *light)
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
-        glTranslatef(0.0f, 0.4f, 0.0f);
+        glTranslatef(5.0f, 0.4f, 0.0f);
         glScalef(0.01f, 0.01f, 0.01f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
         glPopMatrix();
-    }*/
+    }
 }
 
 void draw_origin()

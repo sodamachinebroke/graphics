@@ -26,6 +26,7 @@ typedef struct LSource
     float diffuse[4];
     float specular[4];
     float position[4];
+    float direction[4];
     float angle;
     float exponent;
 } LSource;
