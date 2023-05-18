@@ -134,7 +134,6 @@ void set_material(const Material *material)
     glMaterialfv(GL_FRONT_AND_BACK, GL_AMBIENT, ambient_material_color);
     glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, diffuse_material_color);
     glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, specular_material_color);
-
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, &(material->shininess));
 }
 
@@ -185,7 +184,6 @@ void render_scene(const Scene *scene, const Light *light)
     }
 
     // V12
-
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
@@ -197,7 +195,6 @@ void render_scene(const Scene *scene, const Light *light)
     }
 
     // Electric motor
-
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
