@@ -1,6 +1,7 @@
 #include "app.h"
 
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
 
 void init_app(App *app, int width, int height)
 {

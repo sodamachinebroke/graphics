@@ -137,8 +137,11 @@ void set_material(const Material *material)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, &(material->shininess));
 }
 
+float rotationAngle = 0.0f;
+
 void update_scene(Scene *scene)
 {
+    rotationAngle += 1.0f;
 }
 
 void render_scene(const Scene *scene, const Light *light)
@@ -149,17 +152,6 @@ void render_scene(const Scene *scene, const Light *light)
     glEnable(GL_LIGHT1);
     set_lighting((Light *)light);
     draw_origin();
-    /*// Spotlight0 origin
-    {
-        glPushMatrix();
-        glTranslatef(light->lsources[0].position[0],
-                     light->lsources[0].position[1],
-                     light->lsources[0].position[2]);
-        glScalef(0.2f, 0.2f, 0.2f);
-        glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
-        draw_model(&(scene->objects[3].model));
-        glPopMatrix();
-    }*/
 
     // Garage
     {
@@ -188,6 +180,7 @@ void render_scene(const Scene *scene, const Light *light)
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
         glTranslatef(-3.0f, -0.2f, 5.0f);
+        glRotatef(rotationAngle, 0, 1, 0);
         glScalef(0.02f, 0.02f, 0.02f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
@@ -199,6 +192,7 @@ void render_scene(const Scene *scene, const Light *light)
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
         glTranslatef(-3.0f, -0.2f, 3.0f);
+        glRotatef(rotationAngle, 0, 1, 0);
         glScalef(0.01f, 0.01f, 0.01f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
         draw_model(&(scene->objects[3].model));
