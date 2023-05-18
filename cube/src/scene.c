@@ -19,7 +19,7 @@ void init_scene(Scene *scene)
     scene->objects[1].texture_id = load_texture("assets/textures/white.png");
     scene->objects[1].material.ambient = (Color){0.1, 0.1, 0.1};
     scene->objects[1].material.diffuse = (Color){0.8, 0.8, 0.8};
-    scene->objects[1].material.specular = (Color){0.0, 0.0, 0.0};
+    scene->objects[1].material.specular = (Color){0.2, 0.2, 0.2};
     scene->objects[1].material.shininess = 0.2;
 
     // Load in the V12 engine's model
@@ -31,12 +31,12 @@ void init_scene(Scene *scene)
     scene->objects[2].material.shininess = 0.0;
 
     // Load in the cube model for science
-    load_model(&(scene->objects[3].model), "assets/models/cube.obj");
-    scene->objects[3].texture_id = load_texture("assets/textures/white.png");
-    scene->objects[3].material.ambient = (Color){1.0, 1.0, 1.0};
-    scene->objects[3].material.diffuse = (Color){1.0, 1.0, 1.0};
-    scene->objects[3].material.specular = (Color){1.0, 1.0, 1.0};
-    scene->objects[3].material.shininess = 1.0;
+    load_model(&(scene->objects[3].model), "assets/models/electric_motor.obj");
+    scene->objects[3].texture_id = load_texture("assets/textures/eMotor.jpg");
+    scene->objects[3].material.ambient = (Color){0.2, 0.2, 0.2};
+    scene->objects[3].material.diffuse = (Color){0.8, 0.8, 0.8};
+    scene->objects[3].material.specular = (Color){0.2, 0.2, 0.2};
+    scene->objects[3].material.shininess = 0.3;
 }
 
 void set_lighting(Light *light)
@@ -61,13 +61,13 @@ void set_lighting(Light *light)
     light->lsources[0].position[2] = 2.0f;
     light->lsources[0].position[3] = 1.0f;
 
-    light ->lsources[0].direction[0] = 0.0f;
-    light ->lsources[0].direction[1] = 0.0f;
-    light ->lsources[0].direction[2] = -10.0f;
-    light ->lsources[0].direction[3] = 0.0f;
+    light->lsources[0].direction[0] = 0.0f;
+    light->lsources[0].direction[1] = 0.0f;
+    light->lsources[0].direction[2] = -10.0f;
+    light->lsources[0].direction[3] = 0.0f;
 
-    light->lsources[0].angle = 80.0f;
-    light->lsources[0].exponent = 1.0f;
+    light->lsources[0].angle = 90.0f;
+    light->lsources[0].exponent = 0.5f;
 
     light->lsources[1].ambient[0] = 1.0f;
     light->lsources[1].ambient[1] = 1.0f;
@@ -89,13 +89,13 @@ void set_lighting(Light *light)
     light->lsources[1].position[2] = 2.0f;
     light->lsources[1].position[3] = 1.0f;
 
-    light ->lsources[1].direction[0] = 0.0f;
-    light ->lsources[1].direction[1] = 0.0f;
-    light ->lsources[1].direction[2] = -10.0f;
-    light ->lsources[1].direction[3] = 0.0f;
-    
-    light->lsources[1].angle = 80.0f;
-    light->lsources[1].exponent = 1.0f;
+    light->lsources[1].direction[0] = 0.0f;
+    light->lsources[1].direction[1] = 0.0f;
+    light->lsources[1].direction[2] = -10.0f;
+    light->lsources[1].direction[3] = 0.0f;
+
+    light->lsources[1].angle = 90.0f;
+    light->lsources[1].exponent = 0.5f;
 
     glLightfv(GL_LIGHT0, GL_AMBIENT, light->lsources[0].ambient);
     glLightfv(GL_LIGHT0, GL_DIFFUSE, light->lsources[0].diffuse);
@@ -144,6 +144,7 @@ void update_scene(Scene *scene)
 
 void render_scene(const Scene *scene, const Light *light)
 {
+
     set_material(&(scene->objects[0].material));
     glEnable(GL_LIGHT0);
     glEnable(GL_LIGHT1);
@@ -171,7 +172,7 @@ void render_scene(const Scene *scene, const Light *light)
         draw_model(&(scene->objects[0].model));
         glPopMatrix();
     }
-    
+
     // Buggy
     {
         glPushMatrix();
@@ -188,10 +189,22 @@ void render_scene(const Scene *scene, const Light *light)
     {
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
-        glTranslatef(5.0f, 0.4f, 0.0f);
-        glScalef(0.01f, 0.01f, 0.01f);
+        glTranslatef(-3.0f, -0.2f, 5.0f);
+        glScalef(0.02f, 0.02f, 0.02f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
+        glPopMatrix();
+    }
+
+    // Electric motor
+
+    {
+        glPushMatrix();
+        glRotatef(90, 1, 0, 0);
+        glTranslatef(-3.0f, -0.2f, 3.0f);
+        glScalef(0.01f, 0.01f, 0.01f);
+        glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
+        draw_model(&(scene->objects[3].model));
         glPopMatrix();
     }
 }
