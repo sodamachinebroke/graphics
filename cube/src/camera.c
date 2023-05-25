@@ -1,4 +1,5 @@
 #include "camera.h"
+#include "scene.h"
 
 #include <GL/gl.h>
 
@@ -17,6 +18,13 @@ void init_camera(Camera* camera)
     camera->speed.z = 0.0;
 
     camera->is_preview_visible = false;
+
+    camera->boundCube.position.x = 0.0;
+   camera->boundCube.position.y = 0.0;
+   camera->boundCube.position.z = 1.0;
+   camera->boundCube.width = 1.0;
+   camera->boundCube.height = 1.0;
+   camera->boundCube.depth = 1.0;
 }
 
 void update_camera(Camera* camera, double time)
@@ -31,6 +39,12 @@ void update_camera(Camera* camera, double time)
     camera->position.y += sin(angle) * camera->speed.y * time;
     camera->position.x += cos(side_angle) * camera->speed.x * time;
     camera->position.y += sin(side_angle) * camera->speed.x * time;
+
+    
+
+    /*camera->boundCube.position.x = camera->position.x;
+    camera->boundCube.position.y = camera->position.y;
+    camera->boundCube.position.z = camera->position.z;*/
 }
 
 void set_view(const Camera* camera)

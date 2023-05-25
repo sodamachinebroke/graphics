@@ -5,6 +5,15 @@
 
 #include <stdbool.h>
 
+//bounding cube for the camera
+typedef struct boundingCube
+{
+    vec3 position;
+    float width;
+    float height;
+    float depth;
+}boundingCube;
+
 /**
  * Camera, as a moving point with direction
  */
@@ -14,6 +23,7 @@ typedef struct Camera
     vec3 rotation;
     vec3 speed;
     bool is_preview_visible;
+    boundingCube boundCube;
 } Camera;
 
 /**

@@ -1,7 +1,9 @@
 #include "app.h"
+#include "scene.h"
 
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 
 void init_app(App *app, int width, int height)
 {
@@ -18,7 +20,7 @@ void init_app(App *app, int width, int height)
     }
 
     app->window = SDL_CreateWindow(
-        "Cube!",
+        "Garage",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         width, height,
         SDL_WINDOW_OPENGL);
@@ -48,8 +50,32 @@ void init_app(App *app, int width, int height)
     init_camera(&(app->camera));
     init_scene(&(app->scene));
 
+    boundingSphere cameraSphere = calcBoundSphere(&(app->camera));
+
+    /*bool collisionDetected = false;
+    for (int i = 0; i < 5; i++)
+    {
+        boundingSphere objectSphere = calcBoundSphere(&(app->scene.objects[i]));
+        if(checkCollision(cameraSphere, objectSphere))
+        {
+            collisionDetected = true;
+            break;
+        }
+    }
+    if (collisionDetected)
+    {
+        update_scene(&(app->scene));
+    }*/
+
     app->is_running = true;
 }
+
+/*bool checkCollision(const boundingSphere sphere1, const boundingSphere sphere2){
+    float distance = vec3_distance(sphere1.center, sphere2.center);
+    float sumRadii= sphere1.radius + sphere2.radius;
+
+    return distance <= sumRadii;
+}*/
 
 void init_opengl()
 {
@@ -124,15 +150,19 @@ void handle_app_events(App *app)
                 break;
             case SDL_SCANCODE_W:
                 set_camera_speed(&(app->camera), 2);
+                app->scene.objects[2].position.x +=0.1f;
                 break;
             case SDL_SCANCODE_S:
                 set_camera_speed(&(app->camera), -2);
+                app->scene.objects[2].position.x -=0.1f;
                 break;
             case SDL_SCANCODE_A:
                 set_camera_side_speed(&(app->camera), 2);
+                app->scene.objects[2].position.z +=0.1f;
                 break;
             case SDL_SCANCODE_D:
                 set_camera_side_speed(&(app->camera), -2);
+                app->scene.objects[2].position.z -=0.1f;
                 break;
             case SDL_SCANCODE_Q:
                 break;
@@ -157,12 +187,14 @@ void handle_app_events(App *app)
             break;
         case SDL_MOUSEBUTTONDOWN:
             is_mouse_down = true;
+            
             break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&x, &y);
             if (is_mouse_down)
             {
                 rotate_camera(&(app->camera), mouse_x - x, mouse_y - y);
+                glTranslatef(app->camera.position.x, app->camera.position.y, app->camera.position.z);
             }
             mouse_x = x;
             mouse_y = y;
