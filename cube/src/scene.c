@@ -155,7 +155,7 @@ void render_scene(const Scene *scene, const Light *light)
     glEnable(GL_LIGHT1);
     set_lighting((Light *)light);
     draw_origin();
-
+    
     // Garage
     {
         glPushMatrix();
