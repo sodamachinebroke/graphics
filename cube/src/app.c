@@ -52,7 +52,7 @@ void init_app(App *app, int width, int height)
 
     boundingSphere cameraSphere = calcBoundSphere(&(app->camera));
 
-    /*bool collisionDetected = false;
+    bool collisionDetected = false;
     for (int i = 0; i < 5; i++)
     {
         boundingSphere objectSphere = calcBoundSphere(&(app->scene.objects[i]));
@@ -64,18 +64,18 @@ void init_app(App *app, int width, int height)
     }
     if (collisionDetected)
     {
-        update_scene(&(app->scene));
-    }*/
+        printf("collision detected");
+    }
 
     app->is_running = true;
 }
 
-/*bool checkCollision(const boundingSphere sphere1, const boundingSphere sphere2){
+bool checkCollision(const boundingSphere sphere1, const boundingSphere sphere2){
     float distance = vec3_distance(sphere1.center, sphere2.center);
     float sumRadii= sphere1.radius + sphere2.radius;
 
-    return distance <= sumRadii;
-}*/
+    return (distance <= sumRadii) ? true : false;
+}
 
 void init_opengl()
 {

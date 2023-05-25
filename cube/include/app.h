@@ -57,4 +57,6 @@ void render_app(App *app);
  */
 void destroy_app(App *app);
 
+bool checkCollision(const boundingSphere sphere1, const boundingSphere sphere2);
+
 #endif /* APP_H */
