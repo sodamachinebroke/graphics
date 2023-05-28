@@ -129,6 +129,8 @@ void reshape(GLsizei width, GLsizei height)
         .1, 1000);
 }
 
+bool showHelpMenu = false;
+
 void handle_app_events(App *app)
 {
     SDL_Event event;
@@ -138,6 +140,15 @@ void handle_app_events(App *app)
     int x;
     int y;
 
+    const char* controlsText = "Controls:\n"
+                           "W - Move forward\n"
+                           "A - Move left\n"
+                           "S - Move backward\n"
+                           "D - Move right\n"
+                           "Mouse - Look around";
+    
+
+
     while (SDL_PollEvent(&event))
     {
         switch (event.type)
@@ -145,6 +156,9 @@ void handle_app_events(App *app)
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode)
             {
+            case SDL_SCANCODE_F1:
+                showHelpMenu = !showHelpMenu;
+                break;
             case SDL_SCANCODE_ESCAPE:
                 app->is_running = false;
                 break;
@@ -238,7 +252,6 @@ void render_app(App *app)
     {
         show_texture_preview();
     }
-
     SDL_GL_SwapWindow(app->window);
 }
 
