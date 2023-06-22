@@ -2,6 +2,8 @@
 
 #include <obj/load.h>
 #include <obj/draw.h>
+#include <SDL2/SDL.h>
+#include <math.h>
 
 void init_scene(Scene *scene)
 {
@@ -137,8 +139,12 @@ void set_material(const Material *material)
     glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, &(material->shininess));
 }
 
+float rotationAngle = 0.0f;
+
 void update_scene(Scene *scene)
 {
+    rotationAngle += 1.0f;
+
 }
 
 void render_scene(const Scene *scene, const Light *light)
@@ -149,18 +155,7 @@ void render_scene(const Scene *scene, const Light *light)
     glEnable(GL_LIGHT1);
     set_lighting((Light *)light);
     draw_origin();
-    /*// Spotlight0 origin
-    {
-        glPushMatrix();
-        glTranslatef(light->lsources[0].position[0],
-                     light->lsources[0].position[1],
-                     light->lsources[0].position[2]);
-        glScalef(0.2f, 0.2f, 0.2f);
-        glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
-        draw_model(&(scene->objects[3].model));
-        glPopMatrix();
-    }*/
-
+    
     // Garage
     {
         glPushMatrix();
@@ -188,9 +183,11 @@ void render_scene(const Scene *scene, const Light *light)
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
         glTranslatef(-3.0f, -0.2f, 5.0f);
+        glRotatef(rotationAngle, 0, 1, 0);
         glScalef(0.02f, 0.02f, 0.02f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[2].texture_id);
         draw_model(&(scene->objects[2].model));
+        calcBoundSphere(&(scene->objects[2]));
         glPopMatrix();
     }
 
@@ -199,9 +196,11 @@ void render_scene(const Scene *scene, const Light *light)
         glPushMatrix();
         glRotatef(90, 1, 0, 0);
         glTranslatef(-3.0f, -0.2f, 3.0f);
+        glRotatef(rotationAngle, 0, 1, 0);
         glScalef(0.01f, 0.01f, 0.01f);
         glBindTexture(GL_TEXTURE_2D, scene->objects[3].texture_id);
         draw_model(&(scene->objects[3].model));
+        calcBoundSphere(&(scene->objects[3]));
         glPopMatrix();
     }
 }
@@ -224,3 +223,43 @@ void draw_origin()
 
     glEnd();
 }
+
+float vec3_distance(vec3 v1, vec3 v2)
+{
+    float dx = v2.x - v1.x;
+    float dy = v2.y - v1.y;
+    float dz = v2.z - v1.z;
+
+    return sqrt(dx * dx + dy * dy + dz * dz);
+}
+
+boundingSphere calcBoundSphere(const Object *object)
+{
+    boundingSphere sphere;
+    sphere.center = (vec3){0.0f, 0.0f, 0.0f};
+    sphere.radius = 0.0f;
+    const Model *model = &(object->model);
+    const vec3 *vertices = model->vertices;
+    int num_vertices = model->n_vertices;
+
+    for (int i = 0; i < num_vertices; i++)
+    {
+        sphere.center.x += vertices[i].x;
+        sphere.center.y += vertices[i].y;
+        sphere.center.z += vertices[i].z;
+    }
+
+    sphere.center.x /= num_vertices;
+    sphere.center.y /= num_vertices;
+    sphere.center.z /= num_vertices;
+
+    for (int i = 0; i < num_vertices; i++)
+    {
+        float distance = vec3_distance(sphere.center, vertices[i]);
+        if (distance > sphere.radius)
+            sphere.radius = distance;
+    }
+
+    return sphere;
+}
+

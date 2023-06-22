@@ -6,6 +6,12 @@
 
 #include <obj/model.h>
 
+typedef struct boundingSphere
+{
+    vec3 center;
+    float radius;
+}boundingSphere;
+
 typedef struct Object
 {
     Model model;
@@ -13,6 +19,7 @@ typedef struct Object
     GLuint texture_id;
     vec3 position;
     vec3 scale;
+
 } Object;
 
 typedef struct Scene
@@ -65,5 +72,12 @@ void render_scene(const Scene *scene, const Light *light);
  * Draw the origin of the world coordinate system.
  */
 void draw_origin();
+
+
+//Calculate distance between two vectors
+float vec3_distance(vec3 v1, vec3 v2);
+
+//Calculates a bounding sphere for an object
+boundingSphere calcBoundSphere(const Object *object);
 
 #endif /* SCENE_H */

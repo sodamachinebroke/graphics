@@ -1,6 +1,9 @@
 #include "app.h"
+#include "scene.h"
 
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL.h>
+#include <stdbool.h>
 
 void init_app(App *app, int width, int height)
 {
@@ -17,7 +20,7 @@ void init_app(App *app, int width, int height)
     }
 
     app->window = SDL_CreateWindow(
-        "Cube!",
+        "Garage",
         SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         width, height,
         SDL_WINDOW_OPENGL);
@@ -47,7 +50,31 @@ void init_app(App *app, int width, int height)
     init_camera(&(app->camera));
     init_scene(&(app->scene));
 
+    boundingSphere cameraSphere = calcBoundSphere(&(app->camera));
+
+    bool collisionDetected = false;
+    for (int i = 0; i < 5; i++)
+    {
+        boundingSphere objectSphere = calcBoundSphere(&(app->scene.objects[i]));
+        if(checkCollision(cameraSphere, objectSphere))
+        {
+            collisionDetected = true;
+            break;
+        }
+    }
+    if (collisionDetected)
+    {
+        printf("collision detected");
+    }
+
     app->is_running = true;
+}
+
+bool checkCollision(const boundingSphere sphere1, const boundingSphere sphere2){
+    float distance = vec3_distance(sphere1.center, sphere2.center);
+    float sumRadii= sphere1.radius + sphere2.radius;
+
+    return (distance <= sumRadii) ? true : false;
 }
 
 void init_opengl()
@@ -102,6 +129,8 @@ void reshape(GLsizei width, GLsizei height)
         .1, 1000);
 }
 
+bool showHelpMenu = false;
+
 void handle_app_events(App *app)
 {
     SDL_Event event;
@@ -111,6 +140,15 @@ void handle_app_events(App *app)
     int x;
     int y;
 
+    const char* controlsText = "Controls:\n"
+                           "W - Move forward\n"
+                           "A - Move left\n"
+                           "S - Move backward\n"
+                           "D - Move right\n"
+                           "Mouse - Look around";
+    
+
+
     while (SDL_PollEvent(&event))
     {
         switch (event.type)
@@ -118,20 +156,27 @@ void handle_app_events(App *app)
         case SDL_KEYDOWN:
             switch (event.key.keysym.scancode)
             {
+            case SDL_SCANCODE_F1:
+                showHelpMenu = !showHelpMenu;
+                break;
             case SDL_SCANCODE_ESCAPE:
                 app->is_running = false;
                 break;
             case SDL_SCANCODE_W:
                 set_camera_speed(&(app->camera), 2);
+                app->scene.objects[2].position.x +=0.1f;
                 break;
             case SDL_SCANCODE_S:
                 set_camera_speed(&(app->camera), -2);
+                app->scene.objects[2].position.x -=0.1f;
                 break;
             case SDL_SCANCODE_A:
                 set_camera_side_speed(&(app->camera), 2);
+                app->scene.objects[2].position.z +=0.1f;
                 break;
             case SDL_SCANCODE_D:
                 set_camera_side_speed(&(app->camera), -2);
+                app->scene.objects[2].position.z -=0.1f;
                 break;
             case SDL_SCANCODE_Q:
                 break;
@@ -156,12 +201,14 @@ void handle_app_events(App *app)
             break;
         case SDL_MOUSEBUTTONDOWN:
             is_mouse_down = true;
+            
             break;
         case SDL_MOUSEMOTION:
             SDL_GetMouseState(&x, &y);
             if (is_mouse_down)
             {
                 rotate_camera(&(app->camera), mouse_x - x, mouse_y - y);
+                glTranslatef(app->camera.position.x, app->camera.position.y, app->camera.position.z);
             }
             mouse_x = x;
             mouse_y = y;
@@ -205,7 +252,6 @@ void render_app(App *app)
     {
         show_texture_preview();
     }
-
     SDL_GL_SwapWindow(app->window);
 }
 
